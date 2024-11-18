@@ -22,8 +22,28 @@ def ejercicio1():
         return render_template('ejercicio1.html', promedio=promedio, resultado = resultado)
     return render_template('ejercicio1.html')
 
-@app.route('/ejercicio2')
+@app.route('/ejercicio2', methods=['GET', 'POST'])
 def ejercicio2():
+    if request.method == 'POST':
+        nombre1 = str(request.form['nombre1'])
+        nombre2 = str(request.form['nombre2'])
+        nombre3 = str(request.form['nombre3'])
+        if len(nombre1)> len(nombre2):
+            if(nombre1)>len(nombre3):
+                resulNombre = nombre1
+                cantNombre = len(nombre1)
+            else:
+                resulNombre = nombre3
+                cantNombre = len(nombre3)
+        else :
+            if len(nombre2)>len(nombre3):
+                resulNombre = nombre2
+                cantNombre = len(nombre2)
+            else :
+                resulNombre = nombre3
+                cantNombre = len(nombre3)
+            
+        return render_template('ejercicio2.html', nombre=resulNombre, cant = cantNombre)
     return render_template('ejercicio2.html')
 
 if __name__ == '__main__':
